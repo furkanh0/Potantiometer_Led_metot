@@ -1,0 +1,38 @@
+int led1=9, led2=10, led3=11, pot_sure, pot_par;
+
+void setup()
+{
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+  pinMode(led3, OUTPUT);
+  pinMode(A0, INPUT);
+  pinMode(A1, INPUT);
+  
+}
+
+void loop()
+{
+	pot_sure=pot_olcum(A0,100,1000);
+	pot_par=pot_olcum(A1,0,255);
+  	Led_Animasyon(pot_sure,pot_par);
+   	
+}
+
+int pot_olcum (int pin, int min, int max)
+{
+  int pot=analogRead(pin);
+  pot=map(pot,0,1023,min,max);
+  return pot;
+}
+
+void Led_Animasyon (int sure, int parlaklik)
+{
+    analogWrite(led1,pot_par);
+ 	analogWrite(led2,pot_par);
+ 	analogWrite(led3,pot_par);
+  	delay(pot_sure);
+  	digitalWrite(led1,LOW);
+  	digitalWrite(led2,LOW);	
+  	digitalWrite(led3,LOW);
+  	delay(pot_sure);
+}
